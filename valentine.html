@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Mail 💌</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(-45deg, #514346, #ff7eb3, #bfbabc, #0b0b0b);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes gradientShift {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+#loveMail {
+    background: rgba(255,255,255,0.9);
+    color: #ff4b2b;
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    cursor: pointer;
+    max-width: 400px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#loveMail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+#pictureContainer {
+    display: none;
+    width: 350px;
+    height: 350px;
+    margin: 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+#herPicture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#pictureMessage {
+    display: none;
+    max-width: 350px;
+    margin-top: 15px;
+    background: rgba(255,255,255,0.85);
+    color: #ff4b2b;
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+#valentineQuestion {
+    display: none;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-top: 20px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+.button-container {
+    display: none;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 14px 40px;
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+#yesBtn {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: #fff;
+}
+#yesBtn:hover { transform: scale(1.1); box-shadow: 0 12px 25px rgba(0,0,0,0.4); }
+
+#noBtn {
+    background: #fff;
+    color: #ff4b2b;
+    position: relative;
+}
+#noBtn:hover { transform: scale(1.1); }
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: floatUp 2s linear forwards;
+}
+.heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { top: 0; left: -10px; }
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) rotate(45deg);}
+    100% { opacity: 0; transform: translateY(-250px) rotate(45deg);}
+}
+
+@media (max-width: 500px) {
+    #pictureContainer { width: 250px; height: 250px; }
+    #pictureMessage { font-size: 0.95rem; padding: 10px 12px; max-width: 250px; }
+    #valentineQuestion { font-size: 1.3rem; }
+    .btn { padding: 12px 25px; font-size: 1rem; }
+    #loveMail { font-size: 1rem; padding: 20px 30px; }
+}
+</style>
+</head>
+<body>
+
+<div id="loveMail">💌 Click to open your love mail!</div>
+
+<div id="pictureContainer">
+    <img id="herPicture" src="brad.png" alt="Her Picture">
+</div>
+
+<div id="pictureMessage">
+Every moment with you feels like a dream I never want to wake up from.
+I still remember the way you laugh, the way your eyes light up when you’re happy,
+and I can’t imagine my life without you by my side.
+You make me want to be a better person every single day,
+and even on my worst days, your love reminds me that everything will be okay.
+I love you more than words can ever say, and I promise to always cherish you. 💖
+</div>
+
+
+<div id="valentineQuestion">Will you be my Valentine?</div>
+
+<div class="button-container">
+    <button id="yesBtn" class="btn">YES PLSSSSS</button>
+    <button id="noBtn" class="btn">NOOOOOOOOO!!!</button>
+</div>
+
+<script>
+// Elements
+const loveMail = document.getElementById("loveMail");
+const pictureContainer = document.getElementById("pictureContainer");
+const herPicture = document.getElementById("herPicture");
+const pictureMessage = document.getElementById("pictureMessage");
+const valentineQuestion = document.getElementById("valentineQuestion");
+const buttonContainer = document.querySelector(".button-container");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+// Click love mail
+loveMail.addEventListener("click", () => {
+    loveMail.style.display = "none";
+    pictureContainer.style.display = "block";
+    pictureMessage.style.display = "block";
+
+    setTimeout(() => {
+        pictureContainer.style.display = "none"; // hide her picture
+        pictureMessage.style.display = "none";   // hide message
+        valentineQuestion.style.display = "block"; // show question
+        buttonContainer.style.display = "block";
+        createHearts(20);
+    }, 3000);
+});
+
+// YES button click → your face pops up
+yesBtn.addEventListener("click", () => {
+    herPicture.src = "hahaha.jpg"; // <-- your picture here
+    pictureContainer.style.display = "block"; // show your face
+    valentineQuestion.textContent = "NC KA BRADDDDDDDDDDD!!!"; 
+    buttonContainer.style.display = "none";
+    pictureMessage.style.display = "none";
+    createHearts(30);
+});
+
+// NO button moves away
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// Floating hearts function
+function createHearts(count) {
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        heart.style.width = heart.style.height = 10 + Math.random() * 25 + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2500);
+    }
+}
+</script>
+
+</body>
+</html>
